@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Instalasi & Persiapan
+Clone Repositori
 
-## Getting Started
+Bash
+git clone https://github.com/username/crowdfund-nextjs.git
+cd crowdfund-nextjs
+Instal Dependensi
 
-First, run the development server:
+Bash
+npm install
+# atau
+pnpm install
+Konfigurasi Environment Variable Buat file .env.local di root direktori dan masukkan URL API Laravel Anda:
 
-```bash
+Code snippet
+NEXT_PUBLIC_API_URL=http://localhost:8000
+
+Menjalankan Aplikasi
+Mode Pengembangan (Development)
+Jalankan perintah berikut untuk memulai server lokal dengan fitur hot-reload:
+
+Bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Buka http://localhost:3000 di browser Anda.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Bash
+npm run start
+📁 Struktur Folder Utama
+crowdfunding-ui
+├─ eslint.config.mjs
+├─ next.config.ts
+├─ package-lock.json
+├─ package.json
+├─ postcss.config.mjs
+├─ public
+│  ├─ file.svg
+│  ├─ globe.svg
+│  ├─ next.svg
+│  ├─ vercel.svg
+│  └─ window.svg
+├─ README.md
+├─ src
+│  ├─ app
+│  │  ├─ campaigns
+│  │  │  ├─ create
+│  │  │  │  └─ page.tsx
+│  │  │  ├─ page.tsx
+│  │  │  └─ [id]
+│  │  │     ├─ edit
+│  │  │     │  └─ page.tsx
+│  │  │     └─ page.tsx
+│  │  ├─ favicon.ico
+│  │  ├─ globals.css
+│  │  ├─ layout.tsx
+│  │  └─ page.tsx
+│  ├─ components
+│  │  ├─ CampaignCard.tsx
+│  │  ├─ CampaignDetail.tsx
+│  │  ├─ CampaignForm.tsx
+│  │  ├─ DonationForm.tsx
+│  │  ├─ DonationList.tsx
+│  │  ├─ Footer.tsx
+│  │  ├─ Navbar.tsx
+│  │  └─ UpdateCampaignForm.tsx
+│  ├─ lib
+│  │  ├─ api.ts
+│  │  ├─ error-messages.ts
+│  │  └─ mappers
+│  │     └─ campaign-mapper.ts
+│  └─ types
+│     ├─ api.ts
+│     └─ campaign.ts
+└─ tsconfig.json
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+ Fitur Utama yang Tersedia
+✅ List Campaign: Menampilkan daftar donasi aktif dengan progress bar.
 
-## Learn More
+✅ Create Campaign: Form pembuatan kampanye baru.
 
-To learn more about Next.js, take a look at the following resources:
+✅ Update Campaign: Edit informasi kampanye & ganti status (OPEN/CLOSED).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+✅ Donasi: Integrasi form donasi dengan validasi target.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+✅ Error Handling: Pemetaan pesan error dari API ke bahasa Indonesia yang ramah pengguna.
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Troubleshooting
+CORS Error: Jika gagal melakukan fetch, pastikan Laravel Backend sudah mengizinkan origin http://localhost:3000 di file config/cors.php.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+API Not Found: Pastikan NEXT_PUBLIC_API_URL sudah benar dan menyertakan /api/v1 jika memang API Anda diproteksi oleh prefix tersebut
